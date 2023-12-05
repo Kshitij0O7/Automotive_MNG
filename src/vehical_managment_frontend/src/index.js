@@ -346,19 +346,19 @@ const imageRight = document.getElementById("input_image_right").files[0];
 });
 
 ////////
+//////edit latest
+// document.getElementById("showResultButton").addEventListener("click", function () {
+//   var form = document.getElementById("inputForm");
+//   var resultContainer = document.getElementById("resultContainer");
 
-document.getElementById("showResultButton").addEventListener("click", function () {
-  var form = document.getElementById("inputForm");
-  var resultContainer = document.getElementById("resultContainer");
-
-  if (form.style.display === "block") {
-    form.style.display = "none";
-    resultContainer.style.display = "block";
-  } else {
-    form.style.display = "block";
-    resultContainer.style.display = "none";
-  }
-});
+//   if (form.style.display === "block") {
+//     form.style.display = "none";
+//     resultContainer.style.display = "block";
+//   } else {
+//     form.style.display = "block";
+//     resultContainer.style.display = "none";
+//   }
+// });
 
 
 
@@ -501,4 +501,3 @@ document.addEventListener("DOMContentLoaded", async function () {
     collectedDataSection.style.display = "block";
   });
 });
-
