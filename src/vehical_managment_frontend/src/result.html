@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: url(../assets/bg.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            background-color: #1f1f1f; /* Dark background */
+        }
+
+        label {
+            font-family: sans-serif;
+            font-size: 15px;
+            margin-bottom: 14px;
+            /*color: #00bfff; /* Light blue text for labels */
+            color: #fff;
+        }
+
+        input[type="text"]{
+            width: 95%;
+            padding: 9px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd; /* Darker border */
+            border-radius: 3px;
+            outline: 0;
+            background-color: #fff; /* Dark background color */
+            color: #111; /* White text */
+            box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+    
+        #resultContainer {
+            width: 600px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 15px auto 0px auto;
+            padding: 8px;
+        }
+
+        #checkDetailsButton {
+            background-color: #DC143C; /* Blue button background */
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #checkDetailsButton:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+
+</head>
+<body>
+    <div id="resultContainer"> <!-- New container for the result section -->
+        <div class="form-box">
+            <div class="input-box">
+                <!-- Display -->
+                <label for="vehicleNumber">Enter Vehicle Number: </label>
+                <input type="text" id="vehicleNumber" required>
+            </div>
+            <div class="button-box">
+                <!-- Check Details of Registered Vehicle -->
+                <button id="checkDetailsButton">Check Details</button>
+            </div>
+        </div>
+
+        <!-- Display all -->
+        <div id="collectedData" style="display: none;">
+            <h2>Collected Data</h2>
+            <div id="displayImages"></div>
+            <div id="displayTextData"></div>
+            <div id="displayMapDetails"></div>
+            <div id="displayOwnerDetails"></div>
+            <div id="displayInteger"></div>
+            <div id="displayVehicleName"></div>
+        </div>
+    </div>
+</body>
+</html>

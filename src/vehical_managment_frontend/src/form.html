@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+ <title>Vehicle Management</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: url(../assets/bg.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1f1f1f; /* Dark background */
+        }
+
+        main {
+            width: 600px;
+            height: 800px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 15px auto 0px auto;
+            padding: 8px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+        }
+
+        label {
+            font-family: sans-serif;
+            font-size: 15px;
+            margin-bottom: 2px;
+            /*color: #00bfff; /* Light blue text for labels */
+            color: #fff;
+        }
+
+        input[type="text"], 
+        input[type="date"],
+        input[type="number"],
+        input[type="file"] {
+            width: 95%;
+            padding: 5px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd; /* Darker border */
+            border-radius: 3px;
+            outline: 0;
+            background-color: #fff; /* Dark background color */
+            color: #111; /* White text */
+            box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type="date"] {
+            appearance: none;
+            background: #fff url('calendar-icon.png') no-repeat calc(100% + 10px) center;
+            background-size: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #DC143C; /* Blue button background */
+            font-size: 20px;
+            font-weight: 400;
+            width: 160px;
+            color: #fff;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 2px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        #collectedData {
+            background-color: #444;
+            border: 1px solid #555;
+            border-radius: 4px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .form-box {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-box,
+        .button-box {
+            width: 60%;
+        }
+
+        .choosefile{
+            border: 2px solid #111;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+
+        .choosefile::-webkit-file-upload-button{
+            background: #000;
+            color: #fff;
+            padding: 2px 4px ;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        /* Additional CSS for the result container */
+        #resultContainer {
+            background-color: #555;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        #checkDetailsButton {
+            background-color: #007bff; /* Blue button background */
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #checkDetailsButton:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f1f3f2 url(../assets/loader.svg) no-repeat center center; /* Semi-transparent background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Ensure it appears above other elements */
+        }
+        
+        .preloader img {
+            width: 50px;
+            height: 50px; 
+        }
+    </style>
+
+</head>
+
+<body onload="myFunction()">
+    <!-- <div class="preloader"></div> -->
+<main>
+    <!-- <button id="showResultButton" style="position: absolute; top: 10px; right: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; padding: 10px; cursor: pointer;">Show Results</button> -->
+
+    <div class="form-box">
+        <form id="inputForm" style="display: block;">
+            <!-- Vehicle Number Input -->
+            <label for="vehicalNumberUser_store">Enter Vehicle Number: </label>
+            <input type="text" id="vehicalNumberUser_store" placeholder="Enter Vehicle Number" required>
+    
+            <!-- Image Upload -->
+            <label for="input_image_right">Upload Right Image: </label>
+            <input type="file" id="input_image_right" class="choosefile" accept="image/*" required>
+    
+            <label for="input_image_left">Upload Left Image: </label>
+            <input type="file" id="input_image_left" class="choosefile" accept="image/*" required>
+    
+            <label for="input_image_front">Upload Front Image: </label>
+            <input type="file" id="input_image_front" class="choosefile" accept="image/*" required>
+    
+            <label for="input_image_back">Upload Back Image: </label>
+            <input type="file" id="input_image_back" class="choosefile" accept="image/*" required>
+    
+            <label for="input_image_adhaar_curr_rider">Upload Adhaar Image: </label>
+            <input type="file" id="input_image_adhaar_curr_rider" class="choosefile" accept="image/*" required>
+
+            <!-- Date Picker -->
+            <label for="datePicker">Select a Date: </label>
+            <input type="date" id="datePicker" required>
+    
+            <!-- Map Details -->
+            <label for="mapDetails">Enter Map Details: </label>
+            <input type="text" id="mapDetails" required>
+    
+            <label for="servicingDetails">Enter service Details: </label>
+            <input type="text" id="servicingDetails" required>
+    
+            <!-- Owner Details -->
+            <label for="ownerDetails">Enter Owner Details: </label>
+            <input type="text" id="ownerDetails" required>
+    
+            <!-- Integer Input -->
+            <label for="integerInput">Enter an Integer: </label>
+            <input type="number" id="integerInput" required>
+    
+            <!-- Vehicle Name -->
+            <label for="vehicleName">Enter Vehicle Name: </label>
+            <input type="text" id="vehicleName" required>
+    
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+<!--     
+    <div class="form-box">
+        <form id="inputForm" style="display: block;">
+            
+        </form>
+    </div>
+     -->
+</main>
+
+<script src="script.js"></script>
+
+<!-- <script>
+    var loader = document.getElementById('preloader');
+    function myFunction(){
+        preloader.style.display = 'none';
+    }
+</script> -->
+
+</body>
+</html>
