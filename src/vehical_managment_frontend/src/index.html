@@ -14,12 +14,12 @@
     <style>
       body {
         margin: 0;
-        margin-top: 100px;
-        margin-bottom: 400px;
+        margin-top: auto;
+        margin-bottom: auto;
         padding: 100px;
-        background: url(./bg2.png);
+        transition: background-image 0.5s ease-in-out;
         background-size: cover;
-        background-repeat: no-repeat;
+        background-repeat: repeat-y;
         font-family: "montserrat", sans-serif;
         display: flex;
         flex-direction: column;
@@ -27,6 +27,13 @@
         justify-content: center;
         height: 100vh;
       }
+      .background1 {
+      background-image: url(./bg2.png);
+    }
+
+    .background2 {
+      background-image: url(./bg.png);
+    }
 
       header {
         position: fixed;
@@ -75,8 +82,7 @@
         display: flex;
         gap: 100px;
         margin-left: auto;
-        margin-top: 330px;
-        margin-bottom: 180px;
+        margin-top: 180px;
         padding-right: 75px;
       }
 
@@ -93,7 +99,7 @@
 
       .button:hover {
         background-color: transparent;
-        color: #000;
+        color: #FFF;
         border-width: 2px;
         border-color: #dc143c;
       }
@@ -103,7 +109,7 @@
         transition: 0.3s;
       }
       form {
-        display: flex;
+        display: none;
         flex-direction: column;
         margin: 10px;
       }
@@ -165,7 +171,12 @@
       }
 
       .form-box {
-        display: flex;
+        display: none;
+        justify-content: space-between;
+      }
+
+      .search-box {
+        display: none;
         justify-content: space-between;
       }
 
@@ -288,9 +299,9 @@
     </header>
       <div class="button-container">
         <button id="rentVehicle" class="button">RENT VEHICLE</button>
-        <button id="seeVehicle" class="button">SEE VEHICLE</button>
+        <button id="searchVehicle" class="button">SEE VEHICLE</button>
       </div>
-      <div class="form-box">
+      <div class="form-box" id="form">
         <form id="inputForm" style="display: block">
           <!-- Vehicle Number Input -->
           <label for="vehicalNumberUser_store">Enter Vehicle Number: </label>
@@ -376,7 +387,7 @@
         </form>
       </div>
       <div id="resultContainer"> <!-- New container for the result section -->
-        <div class="form-box">
+        <div class="search-box" id="search">
             <div class="input-box">
                 <!-- Display -->
                 <label class="labelRes" for="vehicleNumber">Enter Vehicle Number: </label>

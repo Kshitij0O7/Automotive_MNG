@@ -6,16 +6,25 @@ var ww;
 var lele;
 // Function to convert an image to an integer array
 function imageToIntArray(imageElement) {
-  imageArray=[];
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
-  console.log("Enntered Image to INTARRAY")
+  imageArray = [];
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  console.log("Enntered Image to INTARRAY");
   // Set the canvas size to match the image dimensions
   canvas.width = imageElement.width;
   canvas.height = imageElement.height;
-  ww= canvas.width ;
-  lele= canvas.height;
-  console.log("ww-> " ,ww, "lele-> ", lele," { ",imageElement.width, " } {",imageElement.height);
+  ww = canvas.width;
+  lele = canvas.height;
+  console.log(
+    "ww-> ",
+    ww,
+    "lele-> ",
+    lele,
+    " { ",
+    imageElement.width,
+    " } {",
+    imageElement.height
+  );
 
   // Make sure the image is fully loaded
   if (imageElement.complete) {
@@ -23,13 +32,22 @@ function imageToIntArray(imageElement) {
     context.drawImage(imageElement, 0, 0);
 
     // Get the pixel data from the canvas
-    const imageData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    const imageData = context.getImageData(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    ).data;
 
     // Convert pixel data to an integer array
     const intArray = [];
     for (let i = 0; i < imageData.length; i += 4) {
       // Combine RGBA values into a single integer
-      const pixelValue = (imageData[i] << 24) | (imageData[i + 1] << 16) | (imageData[i + 2] << 8) | imageData[i + 3];
+      const pixelValue =
+        (imageData[i] << 24) |
+        (imageData[i + 1] << 16) |
+        (imageData[i + 2] << 8) |
+        imageData[i + 3];
       intArray.push(pixelValue);
     }
     console.log(intArray.length);
@@ -42,14 +60,12 @@ function imageToIntArray(imageElement) {
   }
 }
 
-
-
 function intArrayToImageAndSet(intArray, imageContainer) {
   // Create a canvas to draw the image data
 
-  console.log("From convert INTARRY  =-> ",intArray.length);
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
+  console.log("From convert INTARRY  =-> ", intArray.length);
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
 
   // Determine the dimensions of the image. Assuming intArray is a square image.
   const imageSize = Math.sqrt(intArray.length);
@@ -60,15 +76,15 @@ function intArrayToImageAndSet(intArray, imageContainer) {
 
   // Create an ImageData object from the integer array
   console.log("Tyep fo  ara -> ", typeof intArray[0]);
-  
+
   const imageData = context.createImageData(ww, lele);
   for (let i = 0; i < intArray.length; i++) {
     const pixelValue = Number(intArray[i]);
     // Extract RGBA values from the pixelValue
-    imageData.data[i * 4] = (pixelValue >> 24) & 0xFF;        // Red
-    imageData.data[i * 4 + 1] = (pixelValue >> 16) & 0xFF;    // Green
-    imageData.data[i * 4 + 2] = (pixelValue >> 8) & 0xFF;     // Blue
-    imageData.data[i * 4 + 3] = pixelValue & 0xFF;            // Alpha
+    imageData.data[i * 4] = (pixelValue >> 24) & 0xff; // Red
+    imageData.data[i * 4 + 1] = (pixelValue >> 16) & 0xff; // Green
+    imageData.data[i * 4 + 2] = (pixelValue >> 8) & 0xff; // Blue
+    imageData.data[i * 4 + 3] = pixelValue & 0xff; // Alpha
   }
 
   // Put the ImageData onto the canvas
@@ -83,9 +99,6 @@ function intArrayToImageAndSet(intArray, imageContainer) {
   // Append the image element to the specified imageContainer
   imageContainer.appendChild(imgElement);
 }
-
-
-
 
 // // Function to handle file input and add images to the array
 // function handleImageUpload(event) {
@@ -139,8 +152,6 @@ function intArrayToImageAndSet(intArray, imageContainer) {
 // const addImageButton = document.getElementById('addImage');
 // addImageButton.addEventListener('click', handleImageUpload);
 
-
-
 // ////date picker
 
 // document.addEventListener("DOMContentLoaded", function () {
@@ -164,7 +175,6 @@ function intArrayToImageAndSet(intArray, imageContainer) {
 //   });
 // });
 
-
 // ///model detils
 
 // document.addEventListener("DOMContentLoaded", function () {
@@ -180,7 +190,6 @@ function intArrayToImageAndSet(intArray, imageContainer) {
 //   });
 // });
 
-
 // //owner detils
 // document.addEventListener("DOMContentLoaded", function () {
 //   const ownerDetailsInput = document.getElementById("ownerDetails");
@@ -195,10 +204,7 @@ function intArrayToImageAndSet(intArray, imageContainer) {
 //   });
 // });
 
-
-
-
-// // . km reading 
+// // . km reading
 
 // document.addEventListener("DOMContentLoaded", function () {
 //   const integerInput = document.getElementById("integerInput");
@@ -219,8 +225,7 @@ function intArrayToImageAndSet(intArray, imageContainer) {
 //   });
 // });
 
-
-// //vehical name 
+// //vehical name
 // document.addEventListener("DOMContentLoaded", function () {
 //   const vehicleNameInput = document.getElementById("vehicleName");
 //   const storeVehicleButton = document.getElementById("storeVehicle");
@@ -234,9 +239,7 @@ function intArrayToImageAndSet(intArray, imageContainer) {
 //   });
 // });
 
-
-
-document.addEventListener("DOMContentLoaded", function ()  {
+document.addEventListener("DOMContentLoaded", function () {
   const inputForm = document.getElementById("inputForm");
 
   inputForm.addEventListener("submit", function (e) {
@@ -248,20 +251,26 @@ document.addEventListener("DOMContentLoaded", function ()  {
     // const imageFront = document.getElementById("input_image_front").files[0];
     // const imageBack = document.getElementById("input_image_back").files[0];
     // const imageAdhaar = document.getElementById("input_image_adhaar_curr_rider").files[0];
-    
+
     const selectedDate = document.getElementById("datePicker").value;
     const mapDetails = document.getElementById("mapDetails").value;
     const ownerDetails = document.getElementById("ownerDetails").value;
-    const enteredInteger = parseInt(document.getElementById("integerInput").value, 10);
+    const enteredInteger = parseInt(
+      document.getElementById("integerInput").value,
+      10
+    );
     const enteredVehicleName = document.getElementById("vehicleName").value;
-    const enteredVehicalnumber_store = document.getElementById("vehicalNumberUser_store").value;
-    const enteredServicingDetails= document.getElementById("servicingDetails").value;
-     
+    const enteredVehicalnumber_store = document.getElementById(
+      "vehicalNumberUser_store"
+    ).value;
+    const enteredServicingDetails =
+      document.getElementById("servicingDetails").value;
+
     // Now you can perform actions with the collected data
     // For example, you can upload images and process the form data.
 
-   // Example: Display the values
-    
+    // Example: Display the values
+
     // console.log("Right Image:", imageToIntArray(imageRight));
     // console.log("Left Image:", imageToIntArray(imageLeft));
     // console.log("Front Image:", imageToIntArray(imageFront));
@@ -275,12 +284,13 @@ document.addEventListener("DOMContentLoaded", function ()  {
     console.log("Vehicle Name:", enteredVehicleName);
     console.log("Vehicle Number:", enteredVehicalnumber_store);
 
-///
-const imageRight = document.getElementById("input_image_right").files[0];
+    ///
+    const imageRight = document.getElementById("input_image_right").files[0];
     const imageLeft = document.getElementById("input_image_left").files[0];
     const imageFront = document.getElementById("input_image_front").files[0];
     const imageBack = document.getElementById("input_image_back").files[0];
-    const imageAdhaar = document.getElementById("input_image_adhaar_curr_rider").files[0];
+    const imageAdhaar = document.getElementById("input_image_adhaar_curr_rider")
+      .files[0];
 
     // Load images using FileReader and convert to integer arrays
     const loadImageAndConvert = (imageFile) => {
@@ -334,12 +344,13 @@ const imageRight = document.getElementById("input_image_right").files[0];
         ownerDetails,
         enteredInteger.toString(),
         intArrays[4],
-        enteredVehicleName);
+        enteredVehicleName
+      );
 
-        console.log("Completed uploading to blockcahin ");
+      console.log("Completed uploading to blockcahin ");
 
-        await vehical_managment_backend.print_curr_km(enteredVehicalnumber_store);
-        console.log("from blockain vehical nnumber ");
+      await vehical_managment_backend.print_curr_km(enteredVehicalnumber_store);
+      console.log("from blockain vehical nnumber ");
     });
     ////
   });
@@ -360,10 +371,35 @@ const imageRight = document.getElementById("input_image_right").files[0];
 //   }
 // });
 
+const rentVehicleButton = document.getElementById("rentVehicle");
+const searchVehicleButton = document.getElementById("searchVehicle");
+const formElement = document.getElementById("form");
+const searchElement = document.getElementById("search");
+const bodyElement = document.body;
 
+bodyElement.classList.add("background1");
+
+// Add a click event listener to the "RENT VEHICLE" button
+rentVehicleButton.addEventListener("click", () => {
+  // Toggle the visibility of the form
+  formElement.style.display = "flex";
+  searchElement.style.display = "none";
+  // Change the background image
+  bodyElement.classList.remove("background1");
+  bodyElement.classList.add("background2");
+});
+
+// Add a click event listener to the "SEARCH VEHICLE" button
+searchVehicleButton.addEventListener("click", () => {
+  // Toggle the visibility of the form
+  searchElement.style.display = "block";
+  formElement.style.display = "none";
+  // Change the background image
+  bodyElement.classList.remove("background1");
+  bodyElement.classList.add("background2");
+});
 
 ////
-
 
 // //////////
 
@@ -429,48 +465,61 @@ const imageRight = document.getElementById("input_image_right").files[0];
 //   });
 // });
 
-
 ////
 
 document.addEventListener("DOMContentLoaded", async function () {
   const collectedDataSection = document.getElementById("collectedData");
   const checkDetailsButton = document.getElementById("checkDetailsButton");
-  
+
   checkDetailsButton.addEventListener("click", async function () {
     const vehicalNum_txt = document.getElementById("vehicleNumber").value;
     console.log(vehicalNum_txt);
     // Get values from input fields
-    const imageRight = await vehical_managment_backend.print_side_R_image(vehicalNum_txt);
-    console.log("image_right output -> ",imageRight);
+    const imageRight = await vehical_managment_backend.print_side_R_image(
+      vehicalNum_txt
+    );
+    console.log("image_right output -> ", imageRight);
     console.log(typeof imageRight);
-    const imageLeft = await vehical_managment_backend.print_side_L_image(vehicalNum_txt);
-    const imageFront =await vehical_managment_backend.print_front_image(vehicalNum_txt);
-    const imageBack = await vehical_managment_backend.print_back_image(vehicalNum_txt);
-    const imageAdhaar = await vehical_managment_backend.print_curr_rider_adhaar(vehicalNum_txt);
+    const imageLeft = await vehical_managment_backend.print_side_L_image(
+      vehicalNum_txt
+    );
+    const imageFront = await vehical_managment_backend.print_front_image(
+      vehicalNum_txt
+    );
+    const imageBack = await vehical_managment_backend.print_back_image(
+      vehicalNum_txt
+    );
+    const imageAdhaar = await vehical_managment_backend.print_curr_rider_adhaar(
+      vehicalNum_txt
+    );
     //const imageRight = document.getElementById("input_image_right").files[0];
-    
-
-
-
 
     ////
 
-    intArrayToImageAndSet(imageRight[0],displayImages);
-    intArrayToImageAndSet(imageLeft[0],displayImages);
-    intArrayToImageAndSet(imageFront[0],displayImages);
-    intArrayToImageAndSet(imageBack[0],displayImages);
-    intArrayToImageAndSet(imageAdhaar[0],displayImages);
+    intArrayToImageAndSet(imageRight[0], displayImages);
+    intArrayToImageAndSet(imageLeft[0], displayImages);
+    intArrayToImageAndSet(imageFront[0], displayImages);
+    intArrayToImageAndSet(imageBack[0], displayImages);
+    intArrayToImageAndSet(imageAdhaar[0], displayImages);
     ///
-    const selectedDate =  await vehical_managment_backend.print_last_service(vehicalNum_txt);
-        
-    const mapDetails = await vehical_managment_backend.print_model_details(vehicalNum_txt);
-        
-    const ownerDetails = await vehical_managment_backend.print_owner_name(vehicalNum_txt);
-    
-    const enteredInteger =  await vehical_managment_backend.print_curr_km(vehicalNum_txt);
-        
-    const enteredVehicleName = await vehical_managment_backend.print_vehical_name(vehicalNum_txt);
-        
+    const selectedDate = await vehical_managment_backend.print_last_service(
+      vehicalNum_txt
+    );
+
+    const mapDetails = await vehical_managment_backend.print_model_details(
+      vehicalNum_txt
+    );
+
+    const ownerDetails = await vehical_managment_backend.print_owner_name(
+      vehicalNum_txt
+    );
+
+    const enteredInteger = await vehical_managment_backend.print_curr_km(
+      vehicalNum_txt
+    );
+
+    const enteredVehicleName =
+      await vehical_managment_backend.print_vehical_name(vehicalNum_txt);
 
     // Display images if available
     // const images = [imageRight, imageLeft, imageFront, imageBack, imageAdhaar];
@@ -485,7 +534,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     //     displayImagesDiv.appendChild(imgElement);
     //   }
     // });
-
 
     // Display other collected data
     const displayTextData = document.getElementById("displayTextData");
